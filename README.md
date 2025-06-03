@@ -11,6 +11,8 @@ A Node.js backend to browse files in multiple AWS S3 buckets and list metadata s
 
 ## 🔧 Setup
 
+### Standard Setup
+
 1. Clone this repo
 2. Create a `.env` file:
 
@@ -32,6 +34,18 @@ npm install
 
 ```bash
 npm start
+```
+
+### Docker Setup
+
+You can also run the application using Docker:
+
+```bash
+# Build the Docker image
+docker build -t s3-browser-api .
+
+# Run the container
+docker run -p 3000:3000 --env-file .env s3-browser-api
 ```
 
 ## 🔌 API Endpoints
@@ -57,6 +71,24 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173,https://yourdomain.c
 ```
 
 If not specified, the default allowed origin is `http://localhost:3000`.
+
+## 🐳 Docker and CI/CD
+
+### Docker
+
+The application includes a Dockerfile for containerization. Build and run using the commands in the Docker Setup section.
+
+### GitHub Actions
+
+A GitHub Actions workflow is included to automatically build and push the Docker image to Docker Hub when changes are pushed to the main branch.
+
+To set up the GitHub Actions workflow:
+
+1. Add the following secrets to your GitHub repository:
+   - `DOCKERHUB_USERNAME`: Your Docker Hub username
+   - `DOCKERHUB_TOKEN`: Your Docker Hub access token
+
+2. Push changes to the main branch to trigger the workflow.
 
 ---
 
